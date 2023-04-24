@@ -1,12 +1,13 @@
 
 from discord.ext import commands
-import discord, datetime, asyncio, json
+import discord, datetime, asyncio, json, dotenv
 
 with open("settings.json", "r") as read_file: data = json.load(read_file)
 REPORT_TIME = data["time"]
 CHANNEL_ID = int(data["channel_id"])
 MESSAGE = data["message"]
-TOKEN = open("token.env", "r").read()
+config = dotenv.dotenv_values(".env")
+TOKEN = config["TOKEN"]
 
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix='!', intents=intents)
