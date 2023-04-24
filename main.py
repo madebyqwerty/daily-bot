@@ -19,7 +19,7 @@ async def on_ready():
 
 async def timer():
     while True:
-        await asyncio.sleep(1)
+        await asyncio.sleep(60)
         now = datetime.datetime.now()
         current_time = now.strftime("%H:%M")
         if current_time == REPORT_TIME and (not now.weekday() == 4 or not now.weekday() == 5):
