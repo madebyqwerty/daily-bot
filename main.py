@@ -6,7 +6,7 @@ with open("settings.json", "r") as read_file: data = json.load(read_file)
 REPORT_TIME = data["time"]
 CHANNEL_ID = int(data["channel_id"])
 MESSAGE = data["message"]
-TOKEN = open("token.txt", "r").read()
+TOKEN = open("token.env", "r").read()
 
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix='!', intents=intents)
@@ -21,7 +21,7 @@ async def timer():
     while True:
         await asyncio.sleep(1)
         now = datetime.datetime.now()
-        current_time = now.strftime("%H:%M:%S")
+        current_time = now.strftime("%H:%M")
         if current_time == REPORT_TIME and (not now.weekday() == 4 or not now.weekday() == 5):
             channel = client.get_channel(CHANNEL_ID)
             message = await channel.send(MESSAGE.replace("%date%", datetime.datetime.now().strftime("%d/%m")))
