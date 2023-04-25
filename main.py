@@ -32,7 +32,9 @@ async def before_msg1():
     await asyncio.sleep(time)
 
 async def close_thread(thread_channel):
-    await asyncio.sleep(60*(24-int(REPORT_TIME.split(":")[0])))
+    now = datetime.datetime.now()
+    time = (abs(24-now.hour)*60*60) + (abs(60-now.minute)*60)
+    await asyncio.sleep(time)
     await thread_channel.edit(archived=True)
 
 client.run(TOKEN)
