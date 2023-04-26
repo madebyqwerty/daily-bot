@@ -27,7 +27,8 @@ async def my_task():
 @my_task.before_loop
 async def before_msg1():
     now = datetime.datetime.now()
-    time = (abs(int(REPORT_TIME.split(":")[0])-now.hour)*60*60) + (abs(int(REPORT_TIME.split(":")[1])-now.minute)*60)
+    time = ((int(REPORT_TIME.split(":")[0])-now.hour)*60*60) + (int(REPORT_TIME.split(":")[1])-now.minute*60)
+    if time < 0: time = (24*60*60) - abs(time)
     await asyncio.sleep(time)
 
 client.run(TOKEN)
