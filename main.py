@@ -22,19 +22,12 @@ async def on_ready():
 async def my_task():
     channel = client.get_channel(CHANNEL_ID)
     message = await channel.send(MESSAGE.replace("%date%", datetime.datetime.now().strftime("%d/%m")))
-    thread_channel = await channel.create_thread(name=datetime.datetime.now().strftime("%d/%m"), message=message)
-    await close_thread(thread_channel)
+    await channel.create_thread(name=datetime.datetime.now().strftime("%d/%m"), message=message)
 
 @my_task.before_loop
 async def before_msg1():
     now = datetime.datetime.now()
     time = (abs(int(REPORT_TIME.split(":")[0])-now.hour)*60*60) + (abs(int(REPORT_TIME.split(":")[1])-now.minute)*60)
     await asyncio.sleep(time)
-
-async def close_thread(thread_channel):
-    now = datetime.datetime.now()
-    time = (abs(24-now.hour)*60*60) + (abs(60-now.minute)*60)
-    await asyncio.sleep(time)
-    await thread_channel.edit(archived=True)
 
 client.run(TOKEN)
