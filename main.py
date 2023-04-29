@@ -13,6 +13,14 @@ intents = discord.Intents.all()
 client = commands.Bot(command_prefix='!', intents=intents)
 client.remove_command('help')
 
+def calculate_wait_time(target_time):
+    now = datetime.datetime.now()
+    hours = int(target_time.split(":")[0])-now.hour
+    minutes = int(target_time.split(":")[1])-now.minute
+    time = (hours*60*60) + (minutes*60)
+    if time < 0: time = (24*60*60) - abs(time)
+    return time
+
 @client.event
 async def on_ready():
     my_task.start()
@@ -26,9 +34,7 @@ async def my_task():
 
 @my_task.before_loop
 async def before_msg1():
-    now = datetime.datetime.now()
-    time = ((int(REPORT_TIME.split(":")[0])-now.hour)*60*60) + (int(REPORT_TIME.split(":")[1])-now.minute*60)
-    if time < 0: time = (24*60*60) - abs(time)
-    await asyncio.sleep(time)
+    print(calculate_wait_time(REPORT_TIME))
+    await asyncio.sleep(calculate_wait_time(REPORT_TIME))
 
 client.run(TOKEN)
