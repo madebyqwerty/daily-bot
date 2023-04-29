@@ -18,7 +18,8 @@ def calculate_wait_time(target_time):
     hours = int(target_time.split(":")[0])-now.hour
     minutes = int(target_time.split(":")[1])-now.minute
     time = (hours*60*60) + (minutes*60)
-    if time < 0: time = (24*60*60) - abs(time)
+    if time < 0: 
+        return (24*60*60) - abs(time)
     return time
 
 @client.event
