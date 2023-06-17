@@ -1,14 +1,13 @@
 
 from discord.ext import commands, tasks
 from zoneinfo import ZoneInfo
-import discord, datetime, json, dotenv
+import discord, datetime, json, os
 
 with open("settings.json", "r") as read_file: data = json.load(read_file)
 REPORT_TIME = datetime.datetime.strptime(data["time"], '%H:%M')
 CHANNEL_ID = int(data["channel_id"])
 MESSAGE = data["message"]
-config = dotenv.dotenv_values(".env")
-TOKEN = config["TOKEN"]
+TOKEN = os.environ["TOKEN"]
 
 intents = discord.Intents.all()
 client = commands.Bot(command_prefix='!', intents=intents)
