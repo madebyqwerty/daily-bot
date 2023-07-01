@@ -29,6 +29,9 @@ async def my_task():
 
     channel = client.get_channel(CHANNEL_ID)
     message = await channel.send(MESSAGE.replace("%date%", datetime.datetime.now().strftime("%d/%m")).replace("%invite%", invite.url))
-    await channel.create_thread(name=datetime.datetime.now().strftime("%d/%m"), message=message)
+    thread = await channel.create_thread(name=datetime.datetime.now().strftime("%d/%m"), message=message)
+    thread_message = await thread.send("Bude zítra daily voice?")
+    await thread_message.add_reaction("❌")
+    await thread_message.add_reaction("✅")
 
 client.run(TOKEN)
