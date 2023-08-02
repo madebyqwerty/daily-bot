@@ -2,6 +2,8 @@
     "channel_id": "1099721315566497812",
     "message0": "Je čas na **Daily** <@710059910783697026> <@460351256591073290> <@428649739433541664>!\n- Co jsi dělal?\n- Na čem budeš dělat?\n- Blokuje tě něco? Potřebuješ s něcím pomoc?",
     "time0": "9:00",
-    "message1": "<@710059910783697026> <@460351256591073290> <@428649739433541664> Bude zítra daily voice?",
-    "time1": "19:00"
+    "thread0": "Daily %date%",
+    "message1": "<@710059910783697026> <@460351256591073290> <@428649739433541664> Potřebuješ něco vyřešit?",
+    "time1": "15:00",
+    "thread1": "Voice %date%?"
 }
