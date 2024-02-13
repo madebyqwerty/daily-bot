@@ -8,7 +8,7 @@ with open("settings.json", "r") as read_file: data = json.load(read_file)
 CHANNEL_ID = int(data["channel_id"])
 REPORT_TIME0 = datetime.datetime.strptime(data["time0"], '%H:%M')
 MESSAGE0 = data["message0"]
-THREAD0 = data["thread0"]
+#THREAD0 = data["thread0"]
 """REPORT_TIME1 = datetime.datetime.strptime(data["time1"], '%H:%M')
 MESSAGE1 = data["message1"]
 THREAD1 = data["thread1"]"""
@@ -31,7 +31,7 @@ time0 = datetime.time(hour=REPORT_TIME0.hour, minute=REPORT_TIME0.minute, tzinfo
 async def task0():
     channel = client.get_channel(CHANNEL_ID)
     message = await channel.send(MESSAGE0.replace("%date%", datetime.datetime.now().strftime("%d/%m")))
-    await channel.create_thread(name=THREAD0.replace("%date%", datetime.datetime.now().strftime("%d/%m")), message=message)
+    #await channel.create_thread(name=THREAD0.replace("%date%", datetime.datetime.now().strftime("%d/%m")), message=message)
 
 """time1 = datetime.time(hour=REPORT_TIME1.hour, minute=REPORT_TIME1.minute, tzinfo=ZoneInfo("Europe/Prague"))
 @tasks.loop(time=time1)
